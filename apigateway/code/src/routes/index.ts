@@ -6,7 +6,7 @@ const router: Router = Express.Router();
 
 // create a proxy for each microservice
 const clientProxyMiddleware = createProxyMiddleware<Request, Response>({
-  target: 'http://clients:3012',
+  target: 'http://clients:3012/owners',
   changeOrigin: true
 });
 
