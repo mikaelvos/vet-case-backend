@@ -14,15 +14,17 @@ app.use(Express.urlencoded({ extended: true }));
 
 app.use('/', IndexRouter);
 
-// app.use((req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     //set header before response
-//     res.status(404).send('Sorry can\'t find that! Please explore more troubleshooting options.');
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-// app.use(errorHandler);
+// 404 catch-all handler (middleware)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  try {
+    throw new Error('Resource not found', { cause: 404 });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Error handler (last) - implemented a custom error handler
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`🍿 Express running → PORT ${port}`);
