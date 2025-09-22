@@ -1,6 +1,6 @@
 services:
   appointments:
-    container_name: msappointments
+    container_name: appointments
     build: ./appointments
     volumes:
       - ./appointments/code:/usr/src/app
