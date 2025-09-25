@@ -87,3 +87,24 @@ export async function getOwner(req: Request, res: Response): Promise<void> {
     });
   }
 }
+
+export async function setOwner(req: Request, res: Response): Promise<void> {
+  try {
+    const { name, email } = req.body;
+    const newOwner: Owner = await prisma.owner.create({
+      data: {
+        name,
+        email
+      }
+    });
+    res.status(201).send(newOwner);
+  } catch (error) {
+    res.status(500).send({
+      error: {
+        message: 'Failed to create owner',
+        code: 'SERVER_ERROR',
+        url: req.url
+      }
+    });
+  }
+}
