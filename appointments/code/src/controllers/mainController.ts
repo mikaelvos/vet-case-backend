@@ -14,8 +14,5 @@ export function showRoutes(req: Request, res: Response): void {
   res.status(200).send({
     appointments: '/appointments',
     timeslots: '/timeslots',
-    dates: '/dates'
   });
 }
-
-
